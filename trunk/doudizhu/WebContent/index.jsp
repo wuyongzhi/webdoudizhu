@@ -44,6 +44,8 @@
 <title>Web ¶·µØÖ÷</title>
 <script src="js/prototype.js"></script>
 <script src="js/behaviour.js"></script>
+<script src="js/doudizhu.js"></script>
+
 <script language="javascript">
 //initialize: function(isActor,sessionKey,keyHashCode,name,actorType,location,status,ip,actorIndex) {
 	
