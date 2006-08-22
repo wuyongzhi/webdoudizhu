@@ -178,7 +178,6 @@ public class Actor implements game.json.JsCreate {
 		.append(this.keyHashCode).append(",")
 		.append("\"").append(this.name).append("\",")
 		.append(actorType).append(",")
-		.append(location).append(",")
 		.append(status).append(",")
 		.append("\"").append(ip).append("\",")
 		.append(actorIndex).append(")");

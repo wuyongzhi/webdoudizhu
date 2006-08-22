@@ -5,8 +5,9 @@ import java.util.*;
 
 
 public class Desktop {
-	private static int MAX_LOOKERS;
-	 
+	public final static byte STATUS_READY = 1;
+	public final static byte STATUS_RUNNING = 2;
+	
 	private Card[] cards = new Card[54];
 	private int readyCount;
 	private byte status;
@@ -20,7 +21,7 @@ public class Desktop {
 //	private HashMap<String,Actor> actorIPMaps = new HashMap<String,Actor>();
 //	private LinkedHashSet<Actor> lookers = new LinkedHashSet<Actor>();
 //	private List<Actor> actors = new ArrayList<Actor>(3);
-//	
+
 	
 
 	public Desktop(ActorManager am) {
@@ -30,20 +31,14 @@ public class Desktop {
 	}
 	
 	public void setMaxLookers(int maxLookers) {
-		MAX_LOOKERS = maxLookers;
+		//this.am. = maxLookers;
 	}
 	
 	public static void getMaxLookers() {
 		
 	}
 	
-	public Actor getUser(Serializable key) {
-		Actor obj = am.getActor(key);
-		if (obj == null) {
-			obj = am.getLooker(key);
-		}
-		return obj;
-	}
+
 
 	
 	protected void start() {
@@ -208,7 +203,7 @@ public class Desktop {
 	public DesktopInfo getDesktopInfo(Serializable key) {
 		DesktopInfo di = new DesktopInfo();
 		Actor currUser=null;
-		currUser = getUser(key);
+		currUser = am.getUser(key);
 		
 		//
 		//	不是一个有效的用户 (既不是游戏参与者, 也不是旁观者
@@ -250,6 +245,25 @@ public class Desktop {
 		}
 		return looker;
 	}
+	
+	public Actor removeUser(Serializable key ) {
+		Actor user = am.getUser(key);
+		if (user != null) {
+			if (user.getIsActor()) {
+				am.removeActor(key);
+			} else {
+				am.removeLooker(key);
+			}
+		}
+		
+		return user;
+	}
+	public void onSessionDestroyed(Serializable key) {
+		synchronized (this) {
+			this.removeUser(key);
+		}
+	}
+	
 	
 	
 }

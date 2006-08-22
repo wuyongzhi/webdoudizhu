@@ -14,5 +14,11 @@
 	<session-config>
 		<session-timeout>1</session-timeout>
 	</session-config>
+
+	<listener> 
+		<listener-class> 
+			game.doudizhu.web.GameSessionListener
+		</listener-class> 
+	</listener>
 	
 </web-app>

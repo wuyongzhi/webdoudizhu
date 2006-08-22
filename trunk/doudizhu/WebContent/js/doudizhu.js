@@ -1,12 +1,11 @@
 var Actor = Class.create();
 Actor.prototype = {
-	initialize: function(isActor,sessionKey,keyHashCode,name,actorType,location,status,ip,actorIndex) {
+	initialize: function(isActor,sessionKey,keyHashCode,name,actorType,status,ip,actorIndex) {
 		this.isActor = isActor;
 		this.sessionKey = sessionKey;
 		this.keyHashCode = keyHashCode;
 		this.name = name;
 		this.actorType = actorType;
-		this.location = location;
 		this.status = status;
 		this.ip = ip;
 		this.actorIndex = actorIndex;
