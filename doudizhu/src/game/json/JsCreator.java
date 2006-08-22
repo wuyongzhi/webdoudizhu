@@ -5,17 +5,18 @@ public class JsCreator {
 		if (jscreates==null)
 			return "null";
 		if (jscreates.length==0)
-			return "{}";
+			return "[]";
 		StringBuilder sb = new StringBuilder();
-		sb.append("{");
-		for (JsCreate jscreate : jscreates) {
-			if (jscreate==null) {
+		sb.append("[");
+		for (int i=0; i<jscreates.length; ++i) {
+			if (jscreates[i]==null) {
 				sb.append("null,");
 			} else {
-				sb.append(jscreate.toJsObject(sb)).append(",");
+				jscreates[i].toJsObject(sb).append(",");
 			}
-		}
-		sb.setCharAt(sb.length()-1, '}');
+		}    
+		sb.setCharAt(sb.length()-1, ']');
+		
 		return sb.toString();
 	}
 }

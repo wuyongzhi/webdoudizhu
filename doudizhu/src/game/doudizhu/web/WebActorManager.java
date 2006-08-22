@@ -78,9 +78,10 @@ public class WebActorManager implements ActorManager {
 	}
 	
 	
-	public void removeLooker(Serializable key) {
-		lookers.remove(key);
+	public Actor removeLooker(Serializable key) {
+		Actor looker = lookers.remove(key);
 		removeUserKey(key);
+		return looker;
 	}
 	
 	public Actor getActor(Serializable key) {
@@ -109,6 +110,14 @@ public class WebActorManager implements ActorManager {
 	
 	public Collection<Actor> getLookers() {
 		return this.lookers.values();
+	}
+
+	public Actor getUser(Serializable key) {
+		Actor obj = getActor(key);
+		if (obj == null) {
+			obj = getLooker(key);
+		}
+		return obj;
 	}
 	
 
